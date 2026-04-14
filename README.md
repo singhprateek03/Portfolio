@@ -18,4 +18,4 @@ I am an IT Recruiter specializing in sourcing top technical talent using advance
 
 ## 📬 Contact
 - **LinkedIn:** https://www.linkedin.com/in/imprateeksingh
-- **Email:** prateek.singh190425@gmail.com
+- **Email:** prateeksingh.190425@gmail.com
