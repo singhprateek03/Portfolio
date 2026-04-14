@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prateek Singh — Senior Technical Recruiter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0f0e17;
+  --ink-soft: #2d2b3d;
+  --muted: #6b6880;
+  --light: #a09eb5;
+  --bg: #0f0e17;
+  --surface: #1a1828;
+  --surface2: #221f33;
+  --border: rgba(255,255,255,0.08);
+  --border-mid: rgba(255,255,255,0.14);
+  --violet: #7c6fef;
+  --violet-light: #a89cf5;
+  --violet-pale: rgba(124,111,239,0.12);
+  --teal: #2dd4bf;
+  --teal-pale: rgba(45,212,191,0.12);
+  --coral: #f97066;
+  --coral-pale: rgba(249,112,102,0.12);
+  --amber: #fbbf24;
+  --amber-pale: rgba(251,191,36,0.12);
+  --pink: #e879f9;
+  --pink-pale: rgba(232,121,249,0.12);
+  --green: #4ade80;
+  --green-pale: rgba(74,222,128,0.12);
+  --serif: 'Syne', sans-serif;
+  --sans: 'Nunito', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: #e8e6f5;
+  line-height: 1.65;
+  font-size: 15px;
+  overflow-x: hidden;
+}
+
+/* ---- BG BLOBS ---- */
+.blob-wrap {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.18;
+}
+.blob-1 { width: 600px; height: 600px; background: #7c6fef; top: -200px; left: -150px; }
+.blob-2 { width: 500px; height: 500px; background: #2dd4bf; top: 30%; right: -180px; }
+.blob-3 { width: 400px; height: 400px; background: #f97066; bottom: 10%; left: 10%; }
+.blob-4 { width: 350px; height: 350px; background: #e879f9; top: 60%; right: 5%; }
+
+/* ---- NAV ---- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,14,23,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--violet-light), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 13px;
+  color: var(--light);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+
+/* ---- HERO ---- */
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 110px 2.5rem 90px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 1px solid rgba(45,212,191,0.35);
+  background: rgba(45,212,191,0.08);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  color: #fff;
+}
+
+.hero h1 .grad-text {
+  background: linear-gradient(135deg, var(--violet-light) 0%, var(--pink) 50%, var(--coral) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.08rem;
+  color: #b0adc8;
+  line-height: 1.8;
+  max-width: 600px;
+  margin-bottom: 44px;
+  font-weight: 300;
+}
+
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 70px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.22s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--violet) 0%, var(--pink) 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 24px rgba(124,111,239,0.35);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,111,239,0.5); }
+
+.btn-outline {
+  background: transparent;
+  color: #e8e6f5;
+  border: 1px solid var(--border-mid);
+  backdrop-filter: blur(8px);
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  padding-top: 44px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.stat-num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label { font-size: 12px; color: var(--light); letter-spacing: 0.05em; text-transform: uppercase; }
+
+.stat-v { color: var(--violet-light); }
+.stat-t { color: var(--teal); }
+.stat-a { color: var(--amber); }
+
+/* ---- SECTION ---- */
+section {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 2.5rem;
+}
+
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.sec-pill {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.pill-violet { background: var(--violet-pale); color: var(--violet-light); border: 1px solid rgba(124,111,239,0.25); }
+.pill-teal   { background: var(--teal-pale);   color: var(--teal);         border: 1px solid rgba(45,212,191,0.25); }
+.pill-coral  { background: var(--coral-pale);  color: var(--coral);        border: 1px solid rgba(249,112,102,0.25); }
+.pill-amber  { background: var(--amber-pale);  color: var(--amber);        border: 1px solid rgba(251,191,36,0.25); }
+.pill-pink   { background: var(--pink-pale);   color: var(--pink);         border: 1px solid rgba(232,121,249,0.25); }
+.pill-green  { background: var(--green-pale);  color: var(--green);        border: 1px solid rgba(74,222,128,0.25); }
+
+.sec-line { flex: 1; height: 1px; background: var(--border); }
+
+/* ---- ABOUT ---- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.about-text {
+  font-size: 1rem;
+  color: #b0adc8;
+  line-height: 1.85;
+  font-weight: 300;
+}
+.about-text p + p { margin-top: 18px; }
+
+.about-cards { display: flex; flex-direction: column; gap: 12px; }
+
+.about-card {
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.about-card:hover { border-color: var(--border-mid); transform: translateX(4px); }
+
+.about-card-icon {
+  font-size: 20px;
+  margin-bottom: 6px;
+  display: block;
+}
+.about-card strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #e8e6f5;
+  margin-bottom: 3px;
+}
+.about-card span {
+  font-size: 12.5px;
+  color: var(--light);
+}
+
+/* ---- SKILLS ---- */
+.skills-block { margin-bottom: 36px; }
+.skills-block-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tag {
+  padding: 7px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid;
+  white-space: nowrap;
+  transition: transform 0.15s;
+}
+.tag:hover { transform: translateY(-2px); }
+
+.tag-v { background: var(--violet-pale); color: var(--violet-light); border-color: rgba(124,111,239,0.3); }
+.tag-t { background: var(--teal-pale); color: var(--teal); border-color: rgba(45,212,191,0.3); }
+.tag-c { background: var(--coral-pale); color: var(--coral); border-color: rgba(249,112,102,0.3); }
+.tag-a { background: var(--amber-pale); color: var(--amber); border-color: rgba(251,191,36,0.3); }
+.tag-p { background: var(--pink-pale); color: var(--pink); border-color: rgba(232,121,249,0.3); }
+.tag-g { background: var(--green-pale); color: var(--green); border-color: rgba(74,222,128,0.3); }
+.tag-n { background: var(--surface2); color: #c8c5dc; border-color: var(--border-mid); }
+
+/* ---- EXPERIENCE ---- */
+.exp-list { display: flex; flex-direction: column; gap: 0; }
+
+.exp-item {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 28px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left 0.2s;
+}
+.exp-item:first-child { padding-top: 0; }
+.exp-item:last-child { border-bottom: none; }
+.exp-item:hover { padding-left: 6px; }
+
+.exp-meta {}
+.exp-period { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.5; margin-bottom: 8px; }
+
+.exp-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-active { background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+.badge-past   { background: var(--surface2); color: var(--light); border: 1px solid var(--border); }
+
+.exp-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.exp-company {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.co-v { color: var(--violet-light); }
+.co-t { color: var(--teal); }
+.co-c { color: var(--coral); }
+.co-a { color: var(--amber); }
+.co-p { color: var(--pink); }
+
+.exp-points { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.exp-points li {
+  font-size: 13.5px;
+  color: #9a97b3;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+  font-weight: 300;
+}
+.exp-points li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  font-size: 10px;
+  top: 3px;
+  color: var(--violet);
+}
+
+/* ---- CERTS ---- */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.cert-card {
+  padding: 22px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.22s;
+  cursor: default;
+}
+.cert-card:hover { transform: translateY(-4px); border-color: var(--border-mid); }
+
+.cert-icon-wrap {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  font-size: 20px;
+}
+.ci-v { background: var(--violet-pale); }
+.ci-t { background: var(--teal-pale); }
+.ci-a { background: var(--amber-pale); }
+.ci-c { background: var(--coral-pale); }
+.ci-p { background: var(--pink-pale); }
+.ci-g { background: var(--green-pale); }
+
+.cert-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #e0ddf0;
+  line-height: 1.45;
+}
+
+/* ---- EDUCATION ---- */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.edu-card {
+  padding: 28px 24px;
+  border-radius: 18px;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+}
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.edu-mca { background: rgba(124,111,239,0.08); border-color: rgba(124,111,239,0.2); }
+.edu-mca::before { background: linear-gradient(90deg, var(--violet), var(--pink)); }
+.edu-bca { background: rgba(45,212,191,0.06); border-color: rgba(45,212,191,0.2); }
+.edu-bca::before { background: linear-gradient(90deg, var(--teal), var(--green)); }
+
+.edu-degree {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.edu-school { font-size: 13px; color: var(--light); margin-bottom: 10px; }
+.edu-year {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+.edu-mca .edu-year { background: var(--violet-pale); color: var(--violet-light); }
+.edu-bca .edu-year { background: var(--teal-pale); color: var(--teal); }
+
+/* ---- CONTACT ---- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.contact-card {
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.22s;
+  color: #e8e6f5;
+}
+.contact-card:hover { border-color: var(--border-mid); transform: translateY(-3px); background: var(--surface2); }
+
+.contact-icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cic-v { background: var(--violet-pale); color: var(--violet-light); border: 1px solid rgba(124,111,239,0.25); }
+.cic-t { background: var(--teal-pale); color: var(--teal); border: 1px solid rgba(45,212,191,0.25); }
+.cic-c { background: var(--coral-pale); color: var(--coral); border: 1px solid rgba(249,112,102,0.25); }
+.cic-g { background: var(--green-pale); color: var(--green); border: 1px solid rgba(74,222,128,0.25); }
+
+.contact-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  display: block;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+.contact-value { font-size: 14px; font-weight: 600; color: #e0ddf0; }
+
+/* ---- DIVIDER ---- */
+.section-div {
+  max-width: 860px;
+  margin: 0 auto 0;
+  padding: 0 2.5rem;
+  height: 1px;
+  background: var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- FOOTER ---- */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+footer span {
+  background: linear-gradient(90deg, var(--violet-light), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero > * { animation: fadeUp 0.55s ease both; }
+.hero > *:nth-child(1) { animation-delay: 0.05s; }
+.hero > *:nth-child(2) { animation-delay: 0.13s; }
+.hero > *:nth-child(3) { animation-delay: 0.21s; }
+.hero > *:nth-child(4) { animation-delay: 0.29s; }
+.hero > *:nth-child(5) { animation-delay: 0.37s; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 640px) {
+  .about-grid, .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 10px; }
+  nav { padding: 0 1.2rem; }
+  .nav-links { gap: 1.2rem; }
+  section, .hero { padding-left: 1.2rem; padding-right: 1.2rem; }
+  .hero h1 { font-size: 2.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- BG BLOBS -->
+<div class="blob-wrap">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Prateek Singh</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Open to new opportunities
+  </div>
+
+  <h1>
+    Senior Technical<br>
+    <span class="grad-text">Recruiter & AI Pro</span>
+  </h1>
+
+  <p class="hero-desc">
+    Bridging top IT talent with high-growth companies. LinkedIn Certified AI Recruiting Professional with expertise in US staffing, ATS platforms, and AI-powered sourcing strategies — based in India, hiring across the USA.
+  </p>
+
+  <div class="hero-actions">
+    <a href="mailto:prateeksingh.190425@gmail.com" class="btn btn-primary">
+      ✉ Get in touch
+    </a>
+    <a href="https://www.linkedin.com/in/imprateeksingh" target="_blank" class="btn btn-outline">
+      LinkedIn Profile →
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <span class="stat-num stat-v">4+</span>
+      <span class="stat-label">Years US IT Recruiting</span>
+    </div>
+    <div>
+      <span class="stat-num stat-t">AI</span>
+      <span class="stat-label">LinkedIn Certified</span>
+    </div>
+    <div>
+      <span class="stat-num stat-a">MCA</span>
+      <span class="stat-label">Masters in CS</span>
+    </div>
+    <div>
+      <span class="stat-num stat-v">6+</span>
+      <span class="stat-label">Certifications Earned</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-header">
+    <span class="sec-pill pill-violet">About</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a dedicated Senior US IT Recruiter with proven experience in high-volume and niche IT hiring across domains like Software Development, Cloud, Data, and Cybersecurity.</p>
+      <p>I combine deep knowledge of US tax terms, visa processes (H1B, GC, OPT/CPT, EAD), and ATS platforms with modern AI tools like ChatGPT and Claude AI to sharpen Boolean searches and accelerate candidate shortlisting.</p>
+      <p>Currently serving US clients from Ghaziabad, India. I hold a LinkedIn Certified AI Recruiting Professional credential and am passionate about the future of AI-driven talent acquisition.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <span class="about-card-icon">🤖</span>
+        <strong>LinkedIn AI Recruiting Certified</strong>
+        <span>Generative AI for Recruiting Professional</span>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">🌐</span>
+        <strong>US Visa & Tax Expertise</strong>
+        <span>H1B, GC, OPT/CPT, EAD, W2, C2C, 1099</span>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">📊</span>
+        <strong>ATS Power User</strong>
+        <span>Ceipal & Oorwin — end-to-end lifecycle</span>
+      </div>
+      <div class="about-card">
+        <span class="about-card-icon">🎯</span>
+        <strong>Full-Cycle Recruitment</strong>
+        <span>Sourcing → Screening → Offer → Onboarding</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-header">
+    <span class="sec-pill pill-teal">Skills</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="skills-block">
+    <div class="skills-block-title">Core Recruiting</div>
+    <div class="tags">
+      <span class="tag tag-v">Full-Cycle US IT Recruiting</span>
+      <span class="tag tag-v">Boolean Search</span>
+      <span class="tag tag-v">Candidate Sourcing</span>
+      <span class="tag tag-v">Resume Screening</span>
+      <span class="tag tag-v">Interview Coordination</span>
+      <span class="tag tag-v">Offer Negotiation</span>
+      <span class="tag tag-v">Client Management</span>
+    </div>
+  </div>
+
+  <div class="skills-block">
+    <div class="skills-block-title">AI & Technology</div>
+    <div class="tags">
+      <span class="tag tag-t">Claude AI</span>
+      <span class="tag tag-t">ChatGPT</span>
+      <span class="tag tag-t">AI Resume Parsing</span>
+      <span class="tag tag-t">AI Candidate Scoring</span>
+      <span class="tag tag-t">Ceipal ATS</span>
+      <span class="tag tag-t">Oorwin ATS</span>
+    </div>
+  </div>
+
+  <div class="skills-block">
+    <div class="skills-block-title">Sourcing Platforms</div>
+    <div class="tags">
+      <span class="tag tag-c">LinkedIn Recruiter</span>
+      <span class="tag tag-c">Dice</span>
+      <span class="tag tag-c">Monster</span>
+      <span class="tag tag-c">CareerBuilder</span>
+      <span class="tag tag-c">Internal Databases</span>
+      <span class="tag tag-c">Referral Networks</span>
+    </div>
+  </div>
+
+  <div class="skills-block">
+    <div class="skills-block-title">Technical (Java Full Stack)</div>
+    <div class="tags">
+      <span class="tag tag-a">Core Java</span>
+      <span class="tag tag-a">Spring Boot</span>
+      <span class="tag tag-a">Hibernate</span>
+      <span class="tag tag-a">REST APIs</span>
+      <span class="tag tag-a">MySQL</span>
+      <span class="tag tag-a">HTML5 / CSS3</span>
+      <span class="tag tag-a">JavaScript</span>
+      <span class="tag tag-a">Git / GitHub</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-header">
+    <span class="sec-pill pill-coral">Experience</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Feb 2026 — Present</div>
+        <span class="exp-badge badge-active">Current</span>
+      </div>
+      <div>
+        <div class="exp-title">Senior Technical Recruiter</div>
+        <div class="exp-company co-g">Advanced Knowledge Tech LLC · Dallas, TX</div>
+        <ul class="exp-points">
+          <li>Manage full-cycle recruitment for high-demand US IT roles</li>
+          <li>Leverage Ceipal ATS for end-to-end candidate tracking and analytics</li>
+          <li>Use AI tools to refine Boolean searches and accelerate shortlisting</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Sep 2025 — Feb 2026</div>
+        <span class="exp-badge badge-past">6 months</span>
+      </div>
+      <div>
+        <div class="exp-title">Senior Technical Recruiter</div>
+        <div class="exp-company co-v">JS Consulting Solution · Jersey City, NJ</div>
+        <ul class="exp-points">
+          <li>Sourced candidates via LinkedIn, Dice, and job portals using advanced Boolean strings</li>
+          <li>Used ChatGPT to analyze resumes vs JDs and identify best-fit candidates from large pools</li>
+          <li>Coordinated interviews and maintained Ceipal ATS data integrity with full KPI tracking</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Jun 2024 — Aug 2025</div>
+        <span class="exp-badge badge-past">1 yr 3 mos</span>
+      </div>
+      <div>
+        <div class="exp-title">Technical Recruiter</div>
+        <div class="exp-company co-t">Sira Consulting (Inc 5000) · Noida, India</div>
+        <ul class="exp-points">
+          <li>Full-cycle recruitment for FTE and C2C/W2 roles across Software, Cloud, Data & Cybersecurity</li>
+          <li>Successfully placed candidates for HCL and Tech Mahindra within tight deadlines</li>
+          <li>Applied AI-based scoring and duplicate detection to maintain high-quality candidate database</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Nov 2024 — Jun 2025</div>
+        <span class="exp-badge badge-past">8 months</span>
+      </div>
+      <div>
+        <div class="exp-title">Java Full Stack Developer (Training)</div>
+        <div class="exp-company co-a">JSpiders Training & Development · Noida, India</div>
+        <ul class="exp-points">
+          <li>Developed web applications using Core Java, Spring Boot, and Hibernate with MVC architecture</li>
+          <li>Built RESTful APIs and responsive front-end interfaces with HTML5, CSS3, and JavaScript</li>
+          <li>Managed CRUD operations and database design using MySQL; version control via Git/GitHub</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Apr 2022 — Oct 2023</div>
+        <span class="exp-badge badge-past">1 yr 7 mos</span>
+      </div>
+      <div>
+        <div class="exp-title">Technical Recruiter</div>
+        <div class="exp-company co-p">Voto Consulting LLC · Jersey City, NJ</div>
+        <ul class="exp-points">
+          <li>Created and executed sourcing strategies for Java, QA, ServiceNow, Pega & DevOps roles</li>
+          <li>Built lasting candidate relationships throughout the full recruitment lifecycle</li>
+          <li>Posted and managed job descriptions across Dice, CareerBuilder, and LinkedIn</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="sec-header">
+    <span class="sec-pill pill-amber">Certifications</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon-wrap ci-v">🤖</div>
+      <div class="cert-name">Generative AI for Recruiting Professional</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon-wrap ci-a">☕</div>
+      <div class="cert-name">Java Programming</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon-wrap ci-t">💻</div>
+      <div class="cert-name">C# with Microsoft</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon-wrap ci-c">🧠</div>
+      <div class="cert-name">Oracle AI Data Platform Essentials</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon-wrap ci-g">🐍</div>
+      <div class="cert-name">Introduction to Programming Using Python</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon-wrap ci-p">☁️</div>
+      <div class="cert-name">Azure Fundamentals Cloud Skills Challenge</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sec-header">
+    <span class="sec-pill pill-pink">Education</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card edu-mca">
+      <div class="edu-degree">Master of Computer Applications (MCA)</div>
+      <div class="edu-school">Institute of Technology and Science, India</div>
+      <span class="edu-year">2023 – 2025</span>
+    </div>
+    <div class="edu-card edu-bca">
+      <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+      <div class="edu-school">Mewar Institute of Management</div>
+      <span class="edu-year">2019 – 2022</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-header">
+    <span class="sec-pill pill-green">Contact</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="contact-grid">
+    <a href="mailto:prateeksingh.190425@gmail.com" class="contact-card">
+      <div class="contact-icon-wrap cic-v">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div>
+        <span class="contact-label">Email</span>
+        <span class="contact-value">prateeksingh.190425@gmail.com</span>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/imprateeksingh" target="_blank" class="contact-card">
+      <div class="contact-icon-wrap cic-t">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+      <div>
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">linkedin.com/in/imprateeksingh</span>
+      </div>
+    </a>
+    <div class="contact-card" style="cursor:default;">
+      <div class="contact-icon-wrap cic-c">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Ghaziabad, Uttar Pradesh, India</span>
+      </div>
+    </div>
+    <div class="contact-card" style="cursor:default;">
+      <div class="contact-icon-wrap cic-g">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div>
+        <span class="contact-label">Status</span>
+        <span class="contact-value">Open to new opportunities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 <span>Prateek Singh</span> · Crafted with passion
+</footer>
+
+</body>
+</html>
