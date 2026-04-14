@@ -4,7 +4,8 @@ Welcome to my professional portfolio repository.
 
 ## 📄 Portfolio
 You can view my complete portfolio here:
-👉 [Download Portfolio](./prateek-portfolio.pdf)
+👉 [Download Portfolio](./Portfolio
+/prateek-portfolio.html)
 
 ## 👩‍💼 About Me
 I am an IT Recruiter specializing in sourcing top technical talent using advanced Boolean search strategies and talent acquisition techniques.
